@@ -35,20 +35,20 @@
  */
 FILE *tempfile(void)
 {
-#ifdef O_TMPFILE	  /* Only on Linux, with fairly recent (G)LIBC */
-	mode_t oldmask;
-	int fd;
+//#ifdef O_TMPFILE	  /* Only on Linux, with fairly recent (G)LIBC */
+//	mode_t oldmask;
+//	int fd;
 
-	oldmask = umask(0077);
-	fd = open(_PATH_TMP, O_TMPFILE | O_RDWR | O_EXCL | O_CLOEXEC, S_IRUSR | S_IWUSR);
-	umask(oldmask);
-	if (-1 == fd)
-		return NULL;
+//	oldmask = umask(0077);
+//	fd = open(_PATH_TMP, O_TMPFILE | O_RDWR | O_EXCL | O_CLOEXEC, S_IRUSR | S_IWUSR);
+//	umask(oldmask);
+//	if (-1 == fd)
+//		return NULL;
 
-	return fdopen(fd, "w+");
-#else
+//	return fdopen(fd, "w+");
+//#else
 	return tmpfile(); /* Fallback on older GLIBC/Linux and actual UNIX systems */
-#endif
+//#endif
 }
 
 /**
